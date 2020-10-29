@@ -4,9 +4,8 @@ const morgan = require('morgan');
 const app = express();
 const bodyParser = require('body-parser');
 
-const rotaProdutos = require('./routes/produtos');
-const rotaPedidos = require('./routes/pedidos');
 const rotaCandidatos = require('./routes/candidatos');
+const rotaVagas = require('./routes/vagas');
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false})); //apenas dados simples
@@ -24,9 +23,8 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use('/produtos', rotaProdutos);
-app.use('/pedidos', rotaPedidos);
 app.use('/candidatos', rotaCandidatos);
+app.use('/vagas', rotaVagas);
 
 //Quando não encontra a rota
 app.use((req, res, next) => {
